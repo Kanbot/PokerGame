@@ -1,4 +1,4 @@
-package Poker;
+package Poker1;
 
 import java.util.Scanner;
 
@@ -36,11 +36,11 @@ public class Pokertable {
 		
 		double[] Deck_int = new double[7]; //숫자를 문자로 변환한 딜러 덱
 		double[] Deck_int1 = new double[7]; // 숫자를 문자로 변환한 플레이어 덱
-		double[] Bat = {100,0,0}; // 배팅 금액, 배팅 토큰, 선후 차례
+		double[] Bat = {100,0,0,1000000}; // 배팅 금액, 배팅 토큰, 선후 차례,소지금
 		
 		double player; //플레이어 선 토큰
 		double dealer; //딜러 선 토큰		
-		double player_money =100000; // 플레이어 소지금 		
+		double player_money =1000000; // 플레이어 소지금 		
 		double num = 0; // 딜러 노페어  최대값
 		double num1 = 0; // 플레이어 노페어 최대값
 		
@@ -48,7 +48,7 @@ public class Pokertable {
 		int vic =0; // 승리 변수 0-딜러 승리 1 -플레이어 승리
 		
 		while(player_money >=0) { // 게임 끝 경계
-		while(player_money !=0) { // 게임 반복 경계
+		while(player_money >-1) { // 게임 반복 경계
 			Bat[0] =100; // 변수 초기화
 			Bat[1] =0;
 			Bat[2] =0;
@@ -142,6 +142,8 @@ public class Pokertable {
 }
 			
 			ut.space();
+			System.out.println("배팅 페이즈를 시작하겠습니까?(아무나 키나 입력)");
+			so=sc.nextInt();
 			ut.note();
 			sc.nextLine();	
 			
@@ -153,7 +155,7 @@ public class Pokertable {
 				
 				System.out.println("-----------------------------------------");
 				System.out.println("딜러 배팅 턴 입니다.");
-			Bat=bt.ifd(Bat[0],Bat[1],Bat[2]); // 딜러 배팅
+			Bat=bt.ifd(Bat[0],Bat[1],Bat[2],player_money); // 딜러 배팅
 			player_money=rr.win(Bat,player_money);
 			if(Bat[1] == 3) {
 				break;
@@ -181,8 +183,10 @@ public class Pokertable {
 			}
 			 
 			
-			Bat=bt.ifb(bet,Bat[0],player_money,Bat[1],Bat[2],Bat);
-			player_money=rr.lose(Bat,player_money);
+			Bat=bt.ifb(bet,Bat[0],player_money,Bat[1],Bat[2],Bat); //플레이어 배팅
+			player_money= Bat[3];
+			rr.lose(Bat,player_money);
+			System.out.println("현재 소지금: "+(int)player_money);
 			System.out.println("-----------------------------------------");
 			}
 			System.out.println("두번째 오픈 페이즈 끝");
@@ -190,7 +194,7 @@ public class Pokertable {
 				break;
 			}
 			Bat[1] =0;
-			Bat[2] =0;
+			
 			
 			//3 번 째 오픈카드///////////////////////////////////////////////////////////
 			
@@ -215,6 +219,11 @@ public class Pokertable {
 }
 			
 			ut.space();
+			if(Bat[2] == 4) {
+				
+			}else {
+			System.out.println("배팅 페이즈를 시작하겠습니까?(아무나 키나 입력)");
+			so=sc.nextInt();
 			ut.note1(Bat[0]);
 			sc.nextLine();	
 			
@@ -224,7 +233,7 @@ public class Pokertable {
 				
 				System.out.println("-----------------------------------------");
 				System.out.println("딜러 배팅 턴 입니다.");
-			Bat=bt.ifd(Bat[0],Bat[1],Bat[2]); // 딜러 배팅
+			Bat=bt.ifd(Bat[0],Bat[1],Bat[2],player_money); // 딜러 배팅
 			player_money=rr.win(Bat,player_money);
 			if(Bat[1] == 3) {
 				break;
@@ -250,16 +259,18 @@ public class Pokertable {
 			 
 			
 			Bat=bt.ifb(bet,Bat[0],player_money,Bat[1],Bat[2],Bat);
-			player_money=rr.lose(Bat,player_money);
-			
+			player_money= Bat[3];
+			rr.lose(Bat,player_money);
+			System.out.println("현재 소지금: "+(int)player_money);
 			System.out.println("-----------------------------------------");
+			}
 			}
 			System.out.println("세번째 오픈 페이즈 끝");
 			if(Bat[1] ==3) {
 				break;
 			}
 			Bat[1] =0;
-			Bat[2] =0;
+			
 			
 			// 4 번째 오픈 페이즈 ////////////////////////////////////////////////////////////////////
 			
@@ -284,6 +295,8 @@ public class Pokertable {
 }
 			
 			ut.space();
+			System.out.println("배팅 페이즈를 시작하겠습니까?(아무나 키나 입력)");
+			so=sc.nextInt();
 			ut.note1(Bat[0]);
 			sc.nextLine();	
 			
@@ -293,7 +306,7 @@ public class Pokertable {
 				
 				System.out.println("-----------------------------------------");
 				System.out.println("딜러 배팅 턴 입니다.");
-			Bat=bt.ifd(Bat[0],Bat[1],Bat[2]); // 딜러 배팅
+			Bat=bt.ifd(Bat[0],Bat[1],Bat[2],player_money); // 딜러 배팅
 			player_money=rr.win(Bat,player_money);
 			if(Bat[1] == 3) {
 				break;
@@ -319,7 +332,9 @@ public class Pokertable {
 			 
 			
 			Bat=bt.ifb(bet,Bat[0],player_money,Bat[1],Bat[2],Bat);
-			player_money=rr.lose(Bat,player_money);
+			player_money= Bat[3];
+			rr.lose(Bat,player_money);
+			System.out.println("현재 소지금: "+(int)player_money);
 			System.out.println("-----------------------------------------");
 			}
 			System.out.println("네번째 오픈 페이즈 끝");
@@ -327,7 +342,7 @@ public class Pokertable {
 				break;
 			}
 			Bat[1] =0;
-			Bat[2] =0;
+			
 			
 			// 히든 카드 페이즈 /////////////////////////////////////////////////////////////////
 			System.out.println("히든카드  페이즈");
@@ -356,6 +371,8 @@ public class Pokertable {
 }
 			System.out.print("  히든카드: "+hidden);	
 			ut.space();
+			System.out.println("배팅 페이즈를 시작하겠습니까?(아무나 키나 입력)");
+			so=sc.nextInt();
 			ut.note1(Bat[0]);
 			sc.nextLine();	
 			
@@ -365,7 +382,7 @@ public class Pokertable {
 			
 				System.out.println("-----------------------------------------");
 				System.out.println("딜러 배팅 턴 입니다.");
-			Bat=bt.ifd(Bat[0],Bat[1],Bat[2]); // 딜러 배팅
+			Bat=bt.ifd(Bat[0],Bat[1],Bat[2],player_money); // 딜러 배팅
 			player_money=rr.win(Bat,player_money);
 			if(Bat[1] == 3) {
 				break;
@@ -393,7 +410,9 @@ public class Pokertable {
 			 
 			
 			Bat=bt.ifb(bet,Bat[0],player_money,Bat[1],Bat[2],Bat);
-			player_money=rr.lose(Bat,player_money);
+			player_money= Bat[3];	
+			rr.lose(Bat,player_money);
+			System.out.println("현재 소지금: "+(int)player_money);
 			System.out.println("-----------------------------------------");
 			}
 			System.out.println("히든 카드 페이즈 끝");
@@ -401,7 +420,7 @@ public class Pokertable {
 				break;
 			}
 			Bat[1] =0;			
-			Bat[2] =0;
+			
 			ut.clean();
 			
 			dk.caedc(Deck_final, Decka, Deckb); // 딜러 덱 문자 와 숫자 분리
@@ -439,11 +458,28 @@ public class Pokertable {
 				player_money += Bat[0];
 			}
 			System.out.println("플레이어 소지금: " + (int)player_money);
-			System.out.println("다음 판을 하시겠습니까?");
+			System.out.println("다음 판을 하시겠습니까?(예/아니오)");
 			String vx =sc.nextLine();
+			if(vx.equals("예")) {
+				System.out.println("다음판을 시작합니다.");
+				ut.space();
+			}else if(vx.equals("아니오")) {
+				System.out.println("게임을 종료 합니다.");
+				break;
+			}
 			ut.clean();
 			
 			}
+		System.out.println("게임 끝");
+		System.out.println("다음 판을 하시겠습니까?(예/아니오)");
+		String vx =sc.nextLine();
+		if(vx.equals("예")) {
+			System.out.println("다음판을 시작합니다.");
+			ut.space();
+		}else if(vx.equals("아니오")) {
+			System.out.println("게임을 종료 합니다.");
+			break;
+		}
 		}
 		
 		

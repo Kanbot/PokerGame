@@ -1,4 +1,4 @@
-package Poker;
+package Poker1;
 
 import java.util.Collections;
 
@@ -344,21 +344,23 @@ class Rule {
 	}
 	// 승리
 		public  double win(double [] Bat ,double player_money ) {
-			if(Bat[1] == 3) {
+			if(Bat[1] == 3 && player_money !=0) {
 				player_money += Bat[0];
 				System.out.println((int)Bat[0]+"원을 따셨습니다");
 				System.out.println("현재 소지금: "+(int)player_money);
+			}else if (Bat[1] ==3 && player_money == 0) {
+			
+				
 			}
 			return player_money;
 		}
 	// 패배 
-		public  double lose(double [] Bat ,double player_money) {
+		public  void lose(double [] Bat ,double player_money) {
 			if(Bat[1] == 3) {
-				player_money -= Bat[0];
-				System.out.println((int)Bat[0]+"원을 잃"
-						+ "으셨습니다");
-				System.out.println("현재 소지금: "+(int)player_money);
+				player_money =1000000- player_money;
+				System.out.println((int)player_money+"원을 잃"
+						+ "으셨습니다");			
 			}
-			return player_money;
+		
 		}
 }

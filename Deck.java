@@ -1,4 +1,4 @@
-package Poker;
+package Poker1;
 
 public class Deck {
 	String [] Card = new String [52];

@@ -1,4 +1,4 @@
-package Poker;
+package Poker1;
 
 import java.util.Scanner;
 

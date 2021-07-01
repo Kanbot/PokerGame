@@ -160,6 +160,9 @@ public class Pokertable {
 			if(Bat[1] == 3) {
 				break;
 			}
+			if(Bat[1] == 2) {
+				break;
+			}
 			System.out.println("-----------------------------------------");
 			ut.space();
 			
@@ -193,6 +196,7 @@ public class Pokertable {
 			if(Bat[1] ==3) {
 				break;
 			}
+			
 			Bat[1] =0;
 			
 			
@@ -229,7 +233,7 @@ public class Pokertable {
 			
 		///// 배팅 페이즈 ///////////////////////////////////////////////////////////
 			
-			while(Bat[1] !=2 && Bat[1] !=3) {
+			while(Bat[1] !=2 ||	 Bat[1] !=3) {
 				
 				System.out.println("-----------------------------------------");
 				System.out.println("딜러 배팅 턴 입니다.");
@@ -295,6 +299,9 @@ public class Pokertable {
 }
 			
 			ut.space();
+			if(Bat[2] == 4) {
+				
+			}else {
 			System.out.println("배팅 페이즈를 시작하겠습니까?(아무나 키나 입력)");
 			so=sc.nextInt();
 			ut.note1(Bat[0]);
@@ -309,6 +316,9 @@ public class Pokertable {
 			Bat=bt.ifd(Bat[0],Bat[1],Bat[2],player_money); // 딜러 배팅
 			player_money=rr.win(Bat,player_money);
 			if(Bat[1] == 3) {
+				break;
+			}
+			if(Bat[1] == 2) {
 				break;
 			}
 			
@@ -336,6 +346,7 @@ public class Pokertable {
 			rr.lose(Bat,player_money);
 			System.out.println("현재 소지금: "+(int)player_money);
 			System.out.println("-----------------------------------------");
+			}
 			}
 			System.out.println("네번째 오픈 페이즈 끝");
 			if(Bat[1] ==3) {
@@ -371,6 +382,9 @@ public class Pokertable {
 }
 			System.out.print("  히든카드: "+hidden);	
 			ut.space();
+			if(Bat[2] == 4) {
+				
+			}else {
 			System.out.println("배팅 페이즈를 시작하겠습니까?(아무나 키나 입력)");
 			so=sc.nextInt();
 			ut.note1(Bat[0]);
@@ -385,6 +399,9 @@ public class Pokertable {
 			Bat=bt.ifd(Bat[0],Bat[1],Bat[2],player_money); // 딜러 배팅
 			player_money=rr.win(Bat,player_money);
 			if(Bat[1] == 3) {
+				break;
+			}
+			if(Bat[1] == 2) {
 				break;
 			}
 			System.out.println("-----------------------------------------");
@@ -414,6 +431,7 @@ public class Pokertable {
 			rr.lose(Bat,player_money);
 			System.out.println("현재 소지금: "+(int)player_money);
 			System.out.println("-----------------------------------------");
+			}
 			}
 			System.out.println("히든 카드 페이즈 끝");
 			if(Bat[1] ==3) {
